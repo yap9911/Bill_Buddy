@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/equal_bd"
+        android:title="Equal break-down" />
+    <item
+        android:id="@+id/custom_bd"
+        android:title="Custom break-down">
+        <menu>
+            <item
+                android:id="@+id/percentage"
+                android:title="By percentage or ratio" />
+            <item
+                android:id="@+id/amount"
+                android:title="By amount" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/combination_bd"
+        android:title="Combination custom break-down" />
+</menu>

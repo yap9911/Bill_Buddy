@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bill Buddy</string>
+    <string name="welcome_message">Thank you for using Bill Buddy</string>
+</resources>
