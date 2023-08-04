@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_buddiesCountDisplay"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="buddies"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.192" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_billAmountDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bill"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        <TextView
+            android:id="@+id/tv_buddiesCountDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="buddies"
+            android:textSize="30sp"
+            android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="result"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
+        <TextView
+            android:id="@+id/tv_billAmountDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bill"
+            android:textSize="30sp"
+            android:layout_gravity="center"/>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="result"
+            android:textSize="30sp"
+            android:layout_gravity="center" />
+
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/table_layout_border_line"
+            android:padding="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:text="Buddies' name" />
+
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>

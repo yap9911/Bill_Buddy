@@ -29,7 +29,8 @@ import java.util.List;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    private final List<EditText> amountPaidEditTextList = new ArrayList<>(); // List to store the EditText views
+    private final List<EditText> amountPaidEditTextList = new ArrayList<>(); // List to store the amountPaid by each buddy
+    private final List<EditText> buddiesNameList = new ArrayList<>();        // List to store the name of each buddy
     private double billAmount;
     private int buddiesCount;
     private TextView totalView;
@@ -57,15 +58,17 @@ public class MainActivity3 extends AppCompatActivity {
             for (int i = 0; i < buddiesCount; i++) {
                 TableRow BuddyRow = new TableRow(this);
                 BuddyRow.setPadding(16, 16, 16, 16);
-                TextView buddyView = new TextView(this);
-                buddyView.setText("Buddies " + (i + 1));
+                EditText buddyNameEt = new EditText(this);
+                buddyNameEt.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+                buddiesNameList.add(buddyNameEt);
                 EditText amountPaid = new EditText(this);
                 amountPaid.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
-                amountPaid.setFilters(new InputFilter[]{new MainActivity.DecimalDigitsInputFilter(2)}); // prevent the user from inputting bill amount with more than 2 d.p.
-                                                                                                        // by using method setFilters()
+                amountPaid.setFilters(new InputFilter[]{new MainActivity.DecimalDigitsInputFilter(2)});  // prevent the user from inputting bill amount with more than 2 d.p.
+                                                                                                                    // by using method setFilters()
                 amountPaid.setPadding(32, 16, 16, 16);
                 amountPaidEditTextList.add(amountPaid); // Add the amountPaid to the list
-                BuddyRow.addView(buddyView);
+                BuddyRow.addView(buddyNameEt);
+
                 BuddyRow.addView(amountPaid);
                 tableLayout.addView(BuddyRow);
             }
@@ -128,8 +131,10 @@ public class MainActivity3 extends AppCompatActivity {
                     strFileContent.append("Bill Amount: ").append(billAmount).append("\n");
 
                     for (int i = 0; i < buddiesCount; i++) {
-                        String buddyPayment = amountPaidEditTextList.get(i).getText().toString();
-                        strFileContent.append("Buddy ").append(i + 1).append(": ").append(buddyPayment).append("\n");
+                        String buddyName = buddiesNameList.get(i).getText().toString();
+                        double eachBuddyAmount = Double.parseDouble(amountPaidEditTextList.get(i).getText().toString());
+                        String buddyPayment = String.format("%.2f", eachBuddyAmount);
+                        strFileContent.append(buddyName).append(" ").append(buddyPayment).append("\n");
                     }
 
                     // Write the formatted string to the file

@@ -33,6 +33,7 @@ public class MainActivity4 extends AppCompatActivity {
 
     private final List<EditText> percentageOrRatioEditTextList = new ArrayList<>(); // List to store the percentage or ratio
     private final List<TextView> resultViewList = new ArrayList<>();                // List to store the result TextViews
+    private final List<EditText> buddiesNameList = new ArrayList<>();               // List to store the name of each buddy
     private int buddiesCount;
     private double billAmount;
     private boolean isCalculated = false;
@@ -61,8 +62,9 @@ public class MainActivity4 extends AppCompatActivity {
             for (int i = 0; i < buddiesCount; i++) {
                 TableRow BuddyRow = new TableRow(this);
                 BuddyRow.setPadding(16, 16, 16, 16);
-                TextView buddyView = new TextView(this);
-                buddyView.setText("Buddies " + (i + 1));
+                EditText buddyNameEt = new EditText(this);
+                buddyNameEt.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+                buddiesNameList.add(buddyNameEt);
                 EditText PercentOrRatio = new EditText(this);
                 PercentOrRatio.setInputType(InputType.TYPE_CLASS_NUMBER);
                 PercentOrRatio.setFilters(new InputFilter[]{new MainActivity.DecimalDigitsInputFilter(0)}); // allow user to enter integer only.
@@ -70,7 +72,7 @@ public class MainActivity4 extends AppCompatActivity {
                 TextView resultView = new TextView(this);
                 resultViewList.add(resultView);
                 resultView.setPadding(96, 0, 0, 0);
-                BuddyRow.addView(buddyView);
+                BuddyRow.addView(buddyNameEt);
                 BuddyRow.addView(PercentOrRatio);
                 BuddyRow.addView(resultView);
                 tableLayout.addView(BuddyRow);
@@ -141,8 +143,10 @@ public class MainActivity4 extends AppCompatActivity {
                 strFileContent.append("Bill Amount: ").append(billAmount).append("\n");
 
                 for (int i = 0; i < buddiesCount; i++) {
-                    String buddyPayment = resultViewList.get(i).getText().toString();
-                    strFileContent.append("Buddy ").append(i + 1).append(": ").append(buddyPayment).append("\n");
+                    String buddyName = buddiesNameList.get(i).getText().toString();
+                    String eachBuddyAmount = resultViewList.get(i).getText().toString();
+                    String buddyPayment = String.format("%.2f", eachBuddyAmount );
+                    strFileContent.append(buddyName).append(" ").append(buddyPayment).append("\n");
                 }
 
                 // Write the formatted string to the file

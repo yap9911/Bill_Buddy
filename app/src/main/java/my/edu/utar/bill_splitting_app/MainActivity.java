@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (buddiesCount <= 1) {
-                    Toast.makeText(MainActivity.this, "Stop eating alone, go make some friends XD",               // Display an error message if buddies count is less than 1
+                    Toast.makeText(MainActivity.this, "Stop eating alone, go make some buddies XD",               // Display an error message if buddies count is less than 1
                             Toast.LENGTH_SHORT).show();
                 } else if (billAmount <= 0) {
                     Toast.makeText(MainActivity.this, "Since the bill amount is 0, there is no need to split it -_-", // Display an error message if bill amount is less than or equal 0

@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_weight="1"
                     android:padding="16dp"
-                    android:text="Buddies" />
+                    android:text="Buddies' name" />
 
                 <TextView
                     android:layout_weight="1"

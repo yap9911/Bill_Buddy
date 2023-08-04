@@ -27,23 +27,23 @@
             android:padding="16dp">
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="395dp"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_weight="1"
                     android:padding="16dp"
-                    android:text="Buddies" />
+                    android:text="Buddies' name" />
 
                 <TextView
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:text="Break-down options" />
+                    android:text="Options" />
 
                 <TextView
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:text="Amount/\n Percent" />
+                    android:text="Amount/\nPercent   " />
 
                 <TextView
                     android:layout_weight="1"
