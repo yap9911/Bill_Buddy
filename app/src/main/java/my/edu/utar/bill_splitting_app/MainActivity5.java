@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -243,28 +244,39 @@ public class MainActivity5 extends AppCompatActivity {
 
         double totalAmountInput = 0;
 
+
         // convert the string into double or integer
         for (int i = 0; i < RadioGroupList.size(); i++) {
+
+            String amountOrPercent = amountOrPercentEditTextList.get(i).getText().toString();
+            String Name = buddiesNameList.get(i).getText().toString().trim();
+
+            // check if each buddy's name is entered
+            if (TextUtils.isEmpty(Name)) {
+                Toast.makeText(MainActivity5.this, "Please make sure each buddy's name is filled up.",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
             if (RadioGroupList.get(i).getCheckedRadioButtonId() == amountRadioButtonIdList.get(i)) {    // if amount radio button is chosen, convert the string into double
 
                 try {
-                    double convertedAmount = Double.parseDouble(amountOrPercentEditTextList.get(i).getText().toString());
+                    double convertedAmount = Double.parseDouble(amountOrPercent);
                     totalAmountInput += convertedAmount;      // add to the totalAmountInput
                     resultViewList.get(i).setText(String.format("%.2f", convertedAmount));
                 } catch (NumberFormatException e) {
-                    Toast.makeText(MainActivity5.this, "Please make sure each row is filled up.",
+                    Toast.makeText(MainActivity5.this, "Please make sure all the amount or percent are filled up.",
                             Toast.LENGTH_SHORT).show();
                     return false;
                 }
             } else if (RadioGroupList.get(i).getCheckedRadioButtonId() == percentRadioButtonIdList.get(i)) {    // if percentage radio button is chosen, convert the string into integer
                 try {
-                    int convertedPercent = Integer.parseInt(amountOrPercentEditTextList.get(i).getText().toString());
+                    int convertedPercent = Integer.parseInt(amountOrPercent);
                     totalAmountInput += billAmount * ((double) convertedPercent / 100);     // add to the totalAmountInput
                     double result = billAmount * ((double) convertedPercent / 100);
                     resultViewList.get(i).setText(String.format("%.2f", result));
 
                 } catch (NumberFormatException e) {
-                    Toast.makeText(MainActivity5.this, "Please make sure each row is filled up.",
+                    Toast.makeText(MainActivity5.this, "Please make sure amount or percent are filled up.",
                             Toast.LENGTH_SHORT).show();
                     return false;
                 }

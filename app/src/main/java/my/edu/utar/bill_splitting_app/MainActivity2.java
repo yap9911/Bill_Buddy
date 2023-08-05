@@ -139,7 +139,7 @@ public class MainActivity2 extends AppCompatActivity {
             String Name = buddiesNameList.get(i).getText().toString().trim();
 
             if (TextUtils.isEmpty(Name)) {
-                Toast.makeText(MainActivity2.this, "Please make sure each row is filled up.",
+                Toast.makeText(MainActivity2.this, "Please make sure each buddy's name is filled up.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }

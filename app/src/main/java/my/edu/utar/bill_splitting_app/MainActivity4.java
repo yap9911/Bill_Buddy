@@ -1,13 +1,12 @@
 package my.edu.utar.bill_splitting_app;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,7 +116,6 @@ public class MainActivity4 extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -144,8 +142,7 @@ public class MainActivity4 extends AppCompatActivity {
 
                 for (int i = 0; i < buddiesCount; i++) {
                     String buddyName = buddiesNameList.get(i).getText().toString();
-                    String eachBuddyAmount = resultViewList.get(i).getText().toString();
-                    String buddyPayment = String.format("%.2f", eachBuddyAmount );
+                    String buddyPayment = resultViewList.get(i).getText().toString();
                     strFileContent.append(buddyName).append(" ").append(buddyPayment).append("\n");
                 }
 
@@ -177,15 +174,23 @@ public class MainActivity4 extends AppCompatActivity {
         List<Integer> individualPercentOrRatio = new ArrayList<>();
 
         // Get the individual total percentage or ratio input by user and sum them up
-        for (EditText editText : percentageOrRatioEditTextList) {
-            String percentOrRatio = editText.getText().toString();
+        for (int i = 0; i < buddiesCount; i++) {
+            String percentOrRatio = percentageOrRatioEditTextList.get(i).getText().toString();
+            String Name = buddiesNameList.get(i).getText().toString().trim();
+
+            // check if each buddy's name is entered
+            if (TextUtils.isEmpty(Name)) {
+                Toast.makeText(MainActivity4.this, "Please make sure each buddy's name is filled up.",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
 
             try {
                 int convertedPercentOrRatio = Integer.parseInt(percentOrRatio);
                 individualPercentOrRatio.add(convertedPercentOrRatio);
                 totalPercentOrRatio += convertedPercentOrRatio;
             } catch (NumberFormatException e) {
-                Toast.makeText(MainActivity4.this, "Please make sure each row is filled up.",
+                Toast.makeText(MainActivity4.this, "Please make sure all the percent/ratio are filled up.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -160,13 +161,23 @@ public class MainActivity3 extends AppCompatActivity {
     // A method to calculate the total sum of amountPaid values and retrieve the bill amounts of each row
     public double calculateTotalSum() {
         double totalSum = 0;
-        for (EditText editText : amountPaidEditTextList) {
-            String amount = editText.getText().toString();
+        for (int i = 0; i < buddiesCount; i++) {
+            String amount = amountPaidEditTextList.get(i).getText().toString();
+            String Name = buddiesNameList.get(i).getText().toString().trim();
+
+            // check if each buddy's name is entered
+            if (TextUtils.isEmpty(Name)) {
+                Toast.makeText(MainActivity3.this, "Please make sure each buddy's name is filled up.",
+                        Toast.LENGTH_SHORT).show();
+                return 0;
+            }
+
+            // check if all amount is entered
             try {
                 double billAmount = Double.parseDouble(amount);
                 totalSum += billAmount;
             } catch (NumberFormatException e) {
-                Toast.makeText(MainActivity3.this, "Please make sure each row is filled up.",
+                Toast.makeText(MainActivity3.this, "Please make sure all amount are filled up.",
                         Toast.LENGTH_SHORT).show();
                 return 0;
             }
