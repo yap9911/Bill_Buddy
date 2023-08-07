@@ -1,6 +1,6 @@
 package my.edu.utar.bill_splitting_app;
 
-// Home Page activity
+// Home Page activity-
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

@@ -135,6 +135,7 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // method to validate if user enter the buddies' name or not
     public boolean noEmptyInput(){
 
         for (int i = 0; i < buddiesCount; i++) {
@@ -149,6 +150,7 @@ public class MainActivity2 extends AppCompatActivity {
         return true;
     }
 
+    // Pop-up window for sharing purpose
     public void PopUpWindow(){
 
         // Inflate the popup layout
@@ -189,7 +191,7 @@ public class MainActivity2 extends AppCompatActivity {
     // Define a request code
     private static final int SHARE_REQUEST_CODE = 123;
 
-    // Method to share content
+    // Method to share bill content
     public void shareContent(StringBuilder strFileContent) {
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -202,6 +204,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
+    // Return to main page after user interact with the popup window
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

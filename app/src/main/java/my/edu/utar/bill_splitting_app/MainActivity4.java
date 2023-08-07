@@ -213,6 +213,7 @@ public class MainActivity4 extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Pop-up window for sharing purpose
     public void PopUpWindow(){
 
         // Inflate the popup layout
@@ -266,6 +267,7 @@ public class MainActivity4 extends AppCompatActivity {
 
     }
 
+    // Return to main page after user interact with the popup window
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
