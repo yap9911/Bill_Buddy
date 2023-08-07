@@ -248,10 +248,10 @@ public class MainActivity5 extends AppCompatActivity {
 
 
         // convert the string into double or integer
-        for (int i = 0; i < RadioGroupList.size(); i++) {
+        for (int i = 0; i < buddiesCount; i++) {
 
             String amountOrPercent = amountOrPercentEditTextList.get(i).getText().toString();
-            String Name = buddiesNameList.get(i).getText().toString().trim();
+            String Name = buddiesNameList.get(i).getText().toString();
 
             // check if each buddy's name is entered
             if (TextUtils.isEmpty(Name)) {
@@ -273,8 +273,10 @@ public class MainActivity5 extends AppCompatActivity {
             } else if (RadioGroupList.get(i).getCheckedRadioButtonId() == percentRadioButtonIdList.get(i)) {    // if percentage radio button is chosen, convert the string into integer
                 try {
                     int convertedPercent = Integer.parseInt(amountOrPercent);
-                    totalAmountInput += billAmount * ((double) convertedPercent / 100);     // add to the totalAmountInput
                     double result = billAmount * ((double) convertedPercent / 100);
+                    // Round up the result to the nearest decimal
+                    result = Math.round(result * 100) / 100;
+                    totalAmountInput += result;     // add to the totalAmountInput
                     resultViewList.get(i).setText(String.format("%.2f", result));
 
                 } catch (NumberFormatException e) {

@@ -201,7 +201,7 @@ public class MainActivity4 extends AppCompatActivity {
         // Calculate results and set them on the result views
         for (int i = 0; i < individualPercentOrRatio.size(); i++) {
 
-            double result = (billAmount * individualPercentOrRatio.get(i)) / totalPercentOrRatio;
+            double result = Math.round((billAmount * individualPercentOrRatio.get(i)) / totalPercentOrRatio);
             resultViewList.get(i).setText(String.format("%.2f", result));
         }
         return true;
