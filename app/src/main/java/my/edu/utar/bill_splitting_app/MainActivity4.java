@@ -201,7 +201,19 @@ public class MainActivity4 extends AppCompatActivity {
         // Calculate results and set them on the result views
         for (int i = 0; i < individualPercentOrRatio.size(); i++) {
 
-            double result = Math.round((billAmount * individualPercentOrRatio.get(i)) / totalPercentOrRatio);
+            double result = (billAmount * individualPercentOrRatio.get(i)) / totalPercentOrRatio;
+
+            // Check if there are exactly three decimal places
+            String resultStr = String.format("%.3f", result);
+            int decimalIndex = resultStr.indexOf(".");
+            int numDecimalPlaces = resultStr.length() - decimalIndex - 1;
+
+            if (numDecimalPlaces == 3) {
+                // If there are exactly three decimal places, round up to two decimal places
+                result = Math.ceil(result * 100) / 100;
+            }
+
+            resultViewList.get(i).setText(String.format("%.2f", result));
             resultViewList.get(i).setText(String.format("%.2f", result));
         }
         return true;

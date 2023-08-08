@@ -274,8 +274,17 @@ public class MainActivity5 extends AppCompatActivity {
                 try {
                     int convertedPercent = Integer.parseInt(amountOrPercent);
                     double result = billAmount * ((double) convertedPercent / 100);
-                    // Round up the result to the nearest decimal
-                    result = Math.round(result * 100) / 100;
+
+                    // Check if there are exactly three decimal places
+                    String resultStr = String.format("%.3f", result);
+                    int decimalIndex = resultStr.indexOf(".");
+                    int numDecimalPlaces = resultStr.length() - decimalIndex - 1;
+
+                    if (numDecimalPlaces == 3) {
+                        // If there are exactly three decimal places, round up to two decimal places
+                        result = Math.ceil(result * 100) / 100;
+                    }
+
                     totalAmountInput += result;     // add to the totalAmountInput
                     resultViewList.get(i).setText(String.format("%.2f", result));
 
